@@ -26,7 +26,7 @@ with requests.Session() as rs:
     original_url = 'https://parsinger.ru/html/index1_page_1.html'
     base = original_url.rsplit('/', 1)[0]
     resoup = resoup_func(original_url)
-    all = []
+    extracted_data = []
 
     if resoup:
         for index in resoup.find(class_='nav_menu').find_all('a'):
@@ -45,7 +45,7 @@ with requests.Session() as rs:
                     item_url = f'{base}/{item["href"]}'
                     item_resoup = resoup_func(item_url)
                     
-                    all.append(
+                    extracted_data.append(
                             {
                     'categories': item['href'].split('/')[0],
                     'name': item_resoup.find(id='p_header').text.strip(),
@@ -63,4 +63,4 @@ with requests.Session() as rs:
         print(f'Something went wrong with the url: {original_url}\n\nFix it and try again')
 
 with open('file.json', 'w', encoding='utf-8') as file:
-    json.dump(all, file, indent=4, ensure_ascii=False)
+    json.dump(extracted_data, file, indent=4, ensure_ascii=False)
