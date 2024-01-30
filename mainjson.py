@@ -64,3 +64,4 @@ with requests.Session() as rs:
 
 with open('file.json', 'w', encoding='utf-8') as file:
     json.dump(extracted_data, file, indent=4, ensure_ascii=False)
+    

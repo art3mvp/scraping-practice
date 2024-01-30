@@ -4,6 +4,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
+
 def calculate_directory_size(path):
     total_size = 0
     for root, dirs, files in os.walk(path):
